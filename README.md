@@ -37,11 +37,11 @@ Install the package through composer
 composer require verumconsilium/laravel-browsershot
 ```
 
-After the package is installed the service provider will be automatically discoverted and two new Facades `PDF` and `Screenshot` will be available
+After the package is installed the service provider will be automatically discovered and two new Facades `PDF` and `Screenshot` will be available
 
 # Usage
 
-The recommended way to use this package is trhough its Facades 
+The recommended way to use this package is through its Facades 
 
 ## PDF 
 
