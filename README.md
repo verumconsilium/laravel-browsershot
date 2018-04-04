@@ -1,4 +1,4 @@
-# [Browsershot](https://github.com/spatie/browsershot) wrapper for Laravel 5.5+
+# [Browsershot](https://github.com/spatie/browsershot) wrapper for Laravel 5
 This package takes advantage of Google Chrome's Headless mode to take screenshots and generate PDFs from websites, views and raw html
 
 
