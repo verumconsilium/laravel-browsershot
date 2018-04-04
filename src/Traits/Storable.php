@@ -16,13 +16,17 @@ trait Storable
      * @return string
      * @internal param null|string $visibility
      */
-    public function store(string $path, ?string $filename = null): string
+    public function store(string $path, string $visibility = 'private', ?string $filename = null): string
     {
         $this->generateTempFile();
 
         $file = new File($this->tempFile);
 
-        return Storage::putFile($path, $file, $filename);
+        if (!is_null($filename)) {
+            return Storage::putFileAs($path, $file, $filename, $visibility);
+        }
+
+        return Storage::put($path, $file, $visibility);
     }
 
     /**
@@ -32,9 +36,9 @@ trait Storable
      * @param string $filename
      * @return string
      */
-    public function storeAs(string $path, string $filename): string
+    public function storeAs(string $path, string $filename, string $visibility = 'private'): string
     {
-        return $this->store($path, $filename);
+        return $this->store($path, $visibility, $filename);
     }
 
     abstract protected function getFileExtension(): string;
