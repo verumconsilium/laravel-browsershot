@@ -85,7 +85,7 @@ You can pass the custom file name and additional headers the response will have 
 
 If you would like to save the generated pdf file to your storage disk you can call the `store` or `storeAs` method
 
-```
+```php
   $pdfStoredPath = PDF::loadUrl('https://google.com')
                       ->store('pdfs/')
 ```
@@ -93,7 +93,7 @@ If you would like to save the generated pdf file to your storage disk you can ca
 This will use the default storage driver to store the pdf in the `pdfs/` folder  giving it a unique name. If you would like to specify the name you can call de `storeAs` method
 
 
-```
+```php
   $pdfStoredPath = PDF::loadUrl('https://google.com')
                       ->storeAs('pdfs/', 'google.pdf')
 ```
