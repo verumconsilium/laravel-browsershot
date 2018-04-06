@@ -1,6 +1,11 @@
 # [Browsershot](https://github.com/spatie/browsershot) wrapper for Laravel 5
 This package takes advantage of Google Chrome's Headless mode to take screenshots and generate PDFs from websites, views and raw html
 
+[![Latest Stable Version](https://poser.pugx.org/verumconsilium/laravel-browsershot/v/stable)](https://packagist.org/packages/verumconsilium/laravel-browsershot)
+[![Latest Unstable Version](https://poser.pugx.org/verumconsilium/laravel-browsershot/v/unstable)](https://packagist.org/packages/verumconsilium/laravel-browsershot)
+[![Total Downloads](https://poser.pugx.org/verumconsilium/laravel-browsershot/downloads)](https://packagist.org/packages/verumconsilium/laravel-browsershot)
+[![License](https://poser.pugx.org/verumconsilium/laravel-browsershot/license)](https://packagist.org/packages/verumconsilium/laravel-browsershot)
+
 
 # Requirements
 
