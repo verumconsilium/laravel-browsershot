@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "102c4d400d39dd50c70db9a8e182aa16",
@@ -385,20 +385,20 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "3.19.0",
+            "version": "3.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "3830660e63dd74617fd9db6c192b89f897f21d49"
+                "reference": "de0864f93f0778217c23f5a210bfe795d0277093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/3830660e63dd74617fd9db6c192b89f897f21d49",
-                "reference": "3830660e63dd74617fd9db6c192b89f897f21d49",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/de0864f93f0778217c23f5a210bfe795d0277093",
+                "reference": "de0864f93f0778217c23f5a210bfe795d0277093",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
+                "php": "^7.1",
                 "spatie/image": "^1.4",
                 "spatie/temporary-directory": "^1.1",
                 "symfony/process": "^3.0|^4.0"
@@ -437,7 +437,7 @@
                 "screenshot",
                 "webpage"
             ],
-            "time": "2018-04-03T09:56:43+00:00"
+            "time": "2018-09-02T21:12:41+00:00"
         },
         {
             "name": "spatie/image",
