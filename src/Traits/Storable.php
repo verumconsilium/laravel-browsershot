@@ -22,7 +22,7 @@ trait Storable
 
         $file = new File($this->tempFile);
 
-        return Storage::putFile($path, $file, $filename);
+        return Storage::putFileAs($path, $file, $filename);
     }
 
     /**
