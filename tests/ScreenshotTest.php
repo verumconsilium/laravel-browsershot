@@ -35,4 +35,20 @@ class ScreenshotTest extends TestCase
         $response->assertHeader('Content-Disposition', 'inline');
         $response->assertHeader('Content-Type', 'image/jpeg');
     }
+
+    /** @test */
+    public function it_stores_a_jpg_screenshot_with_custom_name()
+    {
+        $screenshot = new Screenshot();
+        $url = 'https://verumconsilium.com';
+
+        Storage::fake();
+
+        $path = $screenshot->loadUrl($url)
+                            ->windowSize(1024, 850)
+                            ->useJPG()
+                            ->storeAs('public/', 'screenshot-filename.jpg');
+
+        Storage::assertExists($path);
+    }
 }
