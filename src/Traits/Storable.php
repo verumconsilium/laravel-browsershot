@@ -22,7 +22,7 @@ trait Storable
         $this->generateTempFile();
 
         $file = new File($this->tempFile);
-        $filename = $filename ?? Str::random();
+        $filename = $filename ?? $this->getRandomFileName();
 
         return Storage::putFileAs($path, $file, $filename);
     }
@@ -37,6 +37,16 @@ trait Storable
     public function storeAs(string $path, string $filename): string
     {
         return $this->store($path, $filename);
+    }
+
+    /**
+     * Creates a random name for the file
+     *
+     * @return string
+     */
+    protected function getRandomFileName(): string
+    {
+        return Str::random() . '.' . $this->getFileExtension();
     }
 
     abstract protected function getFileExtension(): string;
