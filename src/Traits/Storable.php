@@ -3,6 +3,7 @@
 namespace VerumConsilium\Browsershot\Traits;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Http\File;
 use VerumConsilium\Browsershot\Wrapper;
 
@@ -21,6 +22,7 @@ trait Storable
         $this->generateTempFile();
 
         $file = new File($this->tempFile);
+        $filename = $filename ?? Str::random();
 
         return Storage::putFileAs($path, $file, $filename);
     }
