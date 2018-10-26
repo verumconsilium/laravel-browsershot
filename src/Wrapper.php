@@ -94,10 +94,6 @@ abstract class Wrapper
      */
     protected function generateTempFile(): Wrapper
     {
-        if (isset($this->tempFile) && !empty($this->tempFile)) {
-            return $this;
-        }
-
         $tempFileName = tempnam(sys_get_temp_dir(), 'BrowsershotOutput');
 
         $this->tempFile = $tempFileName . '.' . $this->getFileExtension();
