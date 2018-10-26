@@ -25,12 +25,12 @@ class PDFTest extends TestCase
     {
         $pdf = new PDF;
         $response = $pdf->loadHtml('<h1>Testing</h1>')
-                        ->inline();
+                        ->inline('test.pdf');
 
         $response = new TestResponse($response);
 
         $response->assertSuccessful();
-        $response->assertHeader('Content-Disposition', 'inline');
+        $response->assertHeader('Content-Disposition', 'inline; filename="test.pdf"');
         $response->assertHeader('Content-Type', 'application/pdf');
     }
 
@@ -62,5 +62,23 @@ class PDFTest extends TestCase
         $response = new TestResponse($response);
 
         $response->assertSuccessful();
+    }
+
+    /** @test */
+    public function it_throws_an_exception_if_an_invalid_url_is_supplied_to_generate_the_pdf()
+    {
+        $pdf = new PDF;
+
+        $this->expectException(\InvalidArgumentException::class);
+        $pdf->loadUrl('invalid url');
+    }
+
+    /** @test */
+    public function it_throws_an_exception_if_a_non_existent_overload_method_is_called()
+    {
+        $pdf = new PDF;
+
+        $this->expectException(\BadMethodCallException::class);
+        $pdf->nonExistingMethod();
     }
 }

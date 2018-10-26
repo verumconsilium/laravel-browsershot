@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace VerumConsilium\Browsershot;
 
@@ -52,6 +52,7 @@ class BrowsershotServiceProvider extends ServiceProvider
     /**
      * Services provided by this provider
      *
+     * @codeCoverageIgnore
      * @return array
      */
     public function provides()

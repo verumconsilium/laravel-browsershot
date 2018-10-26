@@ -27,15 +27,12 @@ abstract class Wrapper
 
     public function __construct(?string $url = 'http://github.com/verumconsilium/laravel-browsershot')
     {
-        if (!$this->validUrl($url)) {
-            throw new \InvalidArgumentException("{$url} is not a valid url");
-        }
-
         $browsershot = new Browsershot($url);
         $browsershot->setNodeBinary(config('browsershot.nodeBinary'))
                     ->setNpmBinary(config('browsershot.npmBinary'))
                     ->setProxyServer(config('browsershot.proxyServer'));
 
+        // @codeCoverageIgnoreStart
         if (!empty(config('browsershot.chromePath'))) {
             $browsershot->setChromePath(config('browsershot.chromePath'));
         }
@@ -47,8 +44,11 @@ abstract class Wrapper
         foreach (config('browsershot.additionalOptions') as $key => $value) {
             $browsershot->setOption($key, $value);
         }
+        // @codeCoverageIgnoreEnd
 
         $this->browsershot = $browsershot;
+
+        $this->loadUrl($url);
     }
 
     /**
@@ -124,6 +124,7 @@ abstract class Wrapper
     /**
      * Unlink temp files if any
      *
+     * @codeCoverageIgnore
      * @return array
      */
     public function __sleep()
