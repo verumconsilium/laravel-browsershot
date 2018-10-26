@@ -15,4 +15,14 @@ before_install:
 
 install: 
   - composer install
+  - composer require php-coveralls/php-coveralls
   - npm install -g puppeteer
+
+before_script:
+  - mkdir -p build/logs
+
+script:
+ - phpunit --coverage-clover build/logs/clover.xml
+
+after_success:
+  - travis_retry php vendor/bin/php-coveralls -v
