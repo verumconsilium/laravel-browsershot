@@ -30,7 +30,7 @@ abstract class Wrapper
     */
     protected $tempFile;
 
-    public function __construct(?string $url = 'http://github.com/verumconsilium/laravel-browsershot')
+    public function __construct(string $url = 'http://github.com/verumconsilium/laravel-browsershot')
     {
         $browsershot = new Browsershot($url);
         $browsershot->setNodeBinary(config('browsershot.nodeBinary'))
