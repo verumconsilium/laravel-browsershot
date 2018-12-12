@@ -3,10 +3,15 @@
 namespace VerumConsilium\Browsershot;
 
 use Spatie\Browsershot\Browsershot;
+use Spatie\Image\Manipulations;
 use VerumConsilium\Browsershot\Traits\Responsable;
 use VerumConsilium\Browsershot\Traits\ContentLoadable;
 use VerumConsilium\Browsershot\Traits\Storable;
 
+/**
+ * @mixin Browsershot
+ * @mixin Manipulations
+ */
 abstract class Wrapper
 {
     use Responsable, ContentLoadable, Storable;
