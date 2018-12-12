@@ -10,10 +10,11 @@ trait ContentLoadable
     /**
      * Renders and loads a given view browsershot
      *
-     * @param string     $view
+     * @param string $view
      * @param array|null $data
      * @param array|null $mergeData
      * @return \VerumConsilium\Browsershot\Wrapper
+     * @throws \Throwable
      */
     public function loadView(string $view, ?array $data = [], ?array $mergeData = []): Wrapper
     {

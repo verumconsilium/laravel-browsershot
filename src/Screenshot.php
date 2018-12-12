@@ -34,7 +34,7 @@ class Screenshot extends Wrapper
     public function useJPG(): Screenshot
     {
         $this->fileExtension = 'jpeg';
-        $this->setScreenshotType('jpeg', 100);
+        $this->browsershot()->setScreenshotType('jpeg', 100);
 
         return $this;
     }

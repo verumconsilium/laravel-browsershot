@@ -4,6 +4,9 @@ namespace VerumConsilium\Browsershot\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @mixin \VerumConsilium\Browsershot\Screenshot
+ */
 class Screenshot extends Facade
 {
     /**

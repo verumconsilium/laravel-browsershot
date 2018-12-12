@@ -51,4 +51,19 @@ class ScreenshotTest extends TestCase
 
         Storage::assertExists($path);
     }
+
+    /** @test */
+    public function it_calls_methods_on_image_manipulation_class()
+    {
+        $screenshot = new Screenshot();
+        $url = 'https://verumconsilium.com';
+
+        Storage::fake();
+
+        $path = $screenshot->loadUrl($url)
+                           ->fit('contain', 12, 32)
+                           ->storeAs('public/', 'screenshot-filename.jpg');
+
+        Storage::assertExists($path);
+    }
 }

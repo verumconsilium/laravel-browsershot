@@ -3,10 +3,15 @@
 namespace VerumConsilium\Browsershot;
 
 use Spatie\Browsershot\Browsershot;
+use Spatie\Image\Manipulations;
 use VerumConsilium\Browsershot\Traits\Responsable;
 use VerumConsilium\Browsershot\Traits\ContentLoadable;
 use VerumConsilium\Browsershot\Traits\Storable;
 
+/**
+ * @mixin Browsershot
+ * @mixin Manipulations
+ */
 abstract class Wrapper
 {
     use Responsable, ContentLoadable, Storable;
@@ -25,7 +30,7 @@ abstract class Wrapper
     */
     protected $tempFile;
 
-    public function __construct(?string $url = 'http://github.com/verumconsilium/laravel-browsershot')
+    public function __construct(string $url = 'http://github.com/verumconsilium/laravel-browsershot')
     {
         $browsershot = new Browsershot($url);
         $browsershot->setNodeBinary(config('browsershot.nodeBinary'))
@@ -112,13 +117,12 @@ abstract class Wrapper
      */
     public function __call($name, $arguments): Wrapper
     {
-        if (method_exists($this->browsershot(), $name) && is_callable([$this->browsershot(), $name])) {
+        try {
             $this->browsershot()->$name(...$arguments);
-
             return $this;
+        } catch (\Error $e) {
+            throw new \BadMethodCallException('Method ' . static::class . '::' . $name . '() does not exists');
         }
-
-        throw new \BadMethodCallException('Method ' . static::class . '::' . $name . '() does not exists');
     }
 
     /**
