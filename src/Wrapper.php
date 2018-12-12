@@ -117,13 +117,12 @@ abstract class Wrapper
      */
     public function __call($name, $arguments): Wrapper
     {
-        if (method_exists($this->browsershot(), $name) && is_callable([$this->browsershot(), $name])) {
+        try {
             $this->browsershot()->$name(...$arguments);
-
             return $this;
+        } catch (\Error $e) {
+            throw new \BadMethodCallException('Method ' . static::class . '::' . $name . '() does not exists');
         }
-
-        throw new \BadMethodCallException('Method ' . static::class . '::' . $name . '() does not exists');
     }
 
     /**
