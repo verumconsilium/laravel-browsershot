@@ -34,4 +34,14 @@ class FacadePDFTest extends TestCase
 
         $this->assertNotEquals($googleContent, $githubContent);
     }
+
+    /** @test */
+    public function it_returns_the_path_to_the_temp_file()
+    {
+        $pdf = PDF::loadView('test');
+
+        $path = $pdf->getTempFilePath();
+
+        $this->assertFileExists($path);
+    }
 }

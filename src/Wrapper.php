@@ -81,6 +81,18 @@ abstract class Wrapper
     }
 
     /**
+     * Gets the temp file path
+     *
+     * @return string
+     */
+    public function getTempFilePath(): string
+    {
+        $this->generateTempFile();
+
+        return $this->tempFile;
+    }
+
+    /**
      * Reads the output from the generated temp file
      *
      * @return string|null
