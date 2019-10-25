@@ -4,8 +4,8 @@ namespace VerumConsilium\Browsershot;
 
 use Spatie\Browsershot\Browsershot;
 use Spatie\Image\Manipulations;
-use VerumConsilium\Browsershot\Traits\Responsable;
 use VerumConsilium\Browsershot\Traits\ContentLoadable;
+use VerumConsilium\Browsershot\Traits\Responsable;
 use VerumConsilium\Browsershot\Traits\Storable;
 
 /**
@@ -24,19 +24,19 @@ abstract class Wrapper
     protected $browsershot;
 
     /**
-    * Directory where the temporary pdf will be stored
-    *
-    * @var string
-    */
+     * Directory where the temporary pdf will be stored
+     *
+     * @var string
+     */
     protected $tempFile;
 
     public function __construct(string $url = 'http://github.com/verumconsilium/laravel-browsershot')
     {
         $browsershot = new Browsershot($url);
         $browsershot->setNodeBinary(config('browsershot.nodeBinary'))
-                    ->setNodeModulePath(config('browsershow.nodeModules'))
-                    ->setNpmBinary(config('browsershot.npmBinary'))
-                    ->setProxyServer(config('browsershot.proxyServer'));
+            ->setNodeModulePath(config('browsershow.nodeModules'))
+            ->setNpmBinary(config('browsershot.npmBinary'))
+            ->setProxyServer(config('browsershot.proxyServer'));
 
         // @codeCoverageIgnoreStart
         if (!empty(config('browsershot.chromePath'))) {

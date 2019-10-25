@@ -80,5 +80,5 @@ return [
     |
     */
 
-    'additionalOptions' => []
+    'additionalOptions' => [],
 ];
