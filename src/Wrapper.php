@@ -17,14 +17,14 @@ abstract class Wrapper
     use Responsable, ContentLoadable, Storable;
 
     /**
-     * Browsershot base class to generate PDFs
+     * Browsershot base class to generate PDFs.
      *
      * @var \Spatie\Browsershot\Browsershot
      */
     protected $browsershot;
 
     /**
-     * Directory where the temporary pdf will be stored
+     * Directory where the temporary pdf will be stored.
      *
      * @var string
      */
@@ -34,7 +34,7 @@ abstract class Wrapper
     {
         $browsershot = new Browsershot($url);
         $browsershot->setNodeBinary(config('browsershot.nodeBinary'))
-            ->setNodeModulePath(config('browsershow.nodeModules'))
+            ->setNodeModulePath(config('browsershot.nodeModules'))
             ->setNpmBinary(config('browsershot.npmBinary'))
             ->setProxyServer(config('browsershot.proxyServer'));
 
@@ -58,21 +58,21 @@ abstract class Wrapper
     }
 
     /**
-     * Extension file of the generated output
+     * Extension file of the generated output.
      *
      * @return string
      */
     abstract protected function getFileExtension(): string;
 
     /**
-     * Mime Type of the generated output
+     * Mime Type of the generated output.
      *
      * @return string
      */
     abstract protected function getMimeType(): string;
 
     /**
-     * Access underlying browsershot instance
+     * Access underlying browsershot instance.
      *
      * @return Browsershot
      */
@@ -82,7 +82,7 @@ abstract class Wrapper
     }
 
     /**
-     * Gets the temp file path
+     * Gets the temp file path.
      *
      * @return string
      */
@@ -94,7 +94,7 @@ abstract class Wrapper
     }
 
     /**
-     * Reads the output from the generated temp file
+     * Reads the output from the generated temp file.
      *
      * @return string|null
      */
@@ -106,7 +106,7 @@ abstract class Wrapper
     }
 
     /**
-     * Generates temp file
+     * Generates temp file.
      *
      * @return Wrapper
      */
@@ -122,7 +122,7 @@ abstract class Wrapper
     }
 
     /**
-     * Delegates the call of methods to underlying Browsershot
+     * Delegates the call of methods to underlying Browsershot.
      *
      * @param string $name
      * @param array $arguments
@@ -139,7 +139,7 @@ abstract class Wrapper
     }
 
     /**
-     * Unlink temp files if any
+     * Unlink temp files if any.
      *
      * @codeCoverageIgnore
      * @return array
