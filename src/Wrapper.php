@@ -7,6 +7,8 @@ use Spatie\Image\Manipulations;
 use VerumConsilium\Browsershot\Traits\Responsable;
 use VerumConsilium\Browsershot\Traits\ContentLoadable;
 use VerumConsilium\Browsershot\Traits\Storable;
+use Spatie\TemporaryDirectory\TemporaryDirectory;
+use Illuminate\Support\Str;
 
 /**
  * @mixin Browsershot
@@ -24,11 +26,18 @@ abstract class Wrapper
     protected $browsershot;
 
     /**
-    * Directory where the temporary pdf will be stored
+    * Path where the temporary pdf will be stored
     *
     * @var string
     */
     protected $tempFile;
+
+    /**
+     * Directory where the temporary pdf will be stored
+     *
+     * @var string
+     */
+    protected $tempDir;
 
     public function __construct(string $url = 'http://github.com/verumconsilium/laravel-browsershot')
     {
@@ -45,6 +54,8 @@ abstract class Wrapper
         if (config('browsershot.noSandbox')) {
             $browsershot->noSandbox();
         }
+
+        $this->tempDir = config('browsershot.tempDir', '');
 
         foreach (config('browsershot.additionalOptions') as $key => $value) {
             $browsershot->setOption($key, $value);
@@ -111,9 +122,12 @@ abstract class Wrapper
      */
     protected function generateTempFile(): Wrapper
     {
-        $tempFileName = tempnam(sys_get_temp_dir(), 'BrowsershotOutput');
+        $fileName = 'BrowsershotOutput' . time() . Str::random(5) . '.' . $this->getFileExtension();
+        $tempFileName = (new TemporaryDirectory($this->tempDir))
+            ->create()
+            ->path($fileName);
 
-        $this->tempFile = $tempFileName . '.' . $this->getFileExtension();
+        $this->tempFile = $tempFileName;
 
         $this->browsershot()->save($this->tempFile);
 
@@ -139,16 +153,11 @@ abstract class Wrapper
 
     /**
      * Unlink temp files if any
-     *
-     * @codeCoverageIgnore
-     * @return array
      */
-    public function __sleep()
+    public function __destruct()
     {
         if ($this->tempFile) {
             @unlink($this->tempFile);
         }
-
-        return [];
     }
 }

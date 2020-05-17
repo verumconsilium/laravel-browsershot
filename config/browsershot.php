@@ -61,6 +61,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Directory for temporary files
+    |--------------------------------------------------------------------------
+    |
+    | Browsershot will create all temporary files in this directors
+    |
+    | Defaults to empty
+    |
+    */
+    'tempDir' => env('BROWSERSHOT_TEMPDIR', ''),
+
+    /*
+    |--------------------------------------------------------------------------
     | Additional Puppeteer options
     |--------------------------------------------------------------------------
     |
