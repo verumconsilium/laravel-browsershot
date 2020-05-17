@@ -2,13 +2,13 @@
 
 namespace VerumConsilium\Browsershot;
 
+use Illuminate\Support\Str;
 use Spatie\Browsershot\Browsershot;
 use Spatie\Image\Manipulations;
-use VerumConsilium\Browsershot\Traits\Responsable;
-use VerumConsilium\Browsershot\Traits\ContentLoadable;
-use VerumConsilium\Browsershot\Traits\Storable;
 use Spatie\TemporaryDirectory\TemporaryDirectory;
-use Illuminate\Support\Str;
+use VerumConsilium\Browsershot\Traits\ContentLoadable;
+use VerumConsilium\Browsershot\Traits\Responsable;
+use VerumConsilium\Browsershot\Traits\Storable;
 
 /**
  * @mixin Browsershot
@@ -16,24 +16,26 @@ use Illuminate\Support\Str;
  */
 abstract class Wrapper
 {
-    use Responsable, ContentLoadable, Storable;
+    use Responsable;
+    use ContentLoadable;
+    use Storable;
 
     /**
-     * Browsershot base class to generate PDFs
+     * Browsershot base class to generate PDFs.
      *
      * @var \Spatie\Browsershot\Browsershot
      */
     protected $browsershot;
 
     /**
-    * Path where the temporary pdf will be stored
-    *
-    * @var string
-    */
+     * Path where the temporary pdf will be stored.
+     *
+     * @var string
+     */
     protected $tempFile;
 
     /**
-     * Directory where the temporary pdf will be stored
+     * Directory where the temporary pdf will be stored.
      *
      * @var string
      */
@@ -68,21 +70,21 @@ abstract class Wrapper
     }
 
     /**
-     * Extension file of the generated output
+     * Extension file of the generated output.
      *
      * @return string
      */
     abstract protected function getFileExtension(): string;
 
     /**
-     * Mime Type of the generated output
+     * Mime Type of the generated output.
      *
      * @return string
      */
     abstract protected function getMimeType(): string;
 
     /**
-     * Access underlying browsershot instance
+     * Access underlying browsershot instance.
      *
      * @return Browsershot
      */
@@ -92,7 +94,7 @@ abstract class Wrapper
     }
 
     /**
-     * Gets the temp file path
+     * Gets the temp file path.
      *
      * @return string
      */
@@ -104,7 +106,7 @@ abstract class Wrapper
     }
 
     /**
-     * Reads the output from the generated temp file
+     * Reads the output from the generated temp file.
      *
      * @return string|null
      */
@@ -116,13 +118,13 @@ abstract class Wrapper
     }
 
     /**
-     * Generates temp file
+     * Generates temp file.
      *
      * @return Wrapper
      */
-    protected function generateTempFile(): Wrapper
+    protected function generateTempFile(): self
     {
-        $fileName = 'BrowsershotOutput' . time() . Str::random(5) . '.' . $this->getFileExtension();
+        $fileName = 'BrowsershotOutput'.time().Str::random(5).'.'.$this->getFileExtension();
         $tempFileName = (new TemporaryDirectory($this->tempDir))
             ->create()
             ->path($fileName);
@@ -135,24 +137,26 @@ abstract class Wrapper
     }
 
     /**
-     * Delegates the call of methods to underlying Browsershot
+     * Delegates the call of methods to underlying Browsershot.
      *
      * @param string $name
-     * @param array $arguments
+     * @param array  $arguments
+     *
      * @return \VerumConsilium\Browsershot\Wrapper
      */
-    public function __call($name, $arguments): Wrapper
+    public function __call($name, $arguments): self
     {
         try {
             $this->browsershot()->$name(...$arguments);
+
             return $this;
         } catch (\Error $e) {
-            throw new \BadMethodCallException('Method ' . static::class . '::' . $name . '() does not exists');
+            throw new \BadMethodCallException('Method '.static::class.'::'.$name.'() does not exists');
         }
     }
 
     /**
-     * Unlink temp files if any
+     * Unlink temp files if any.
      */
     public function __destruct()
     {
