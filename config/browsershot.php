@@ -64,7 +64,7 @@ return [
     | Directory for temporary files
     |--------------------------------------------------------------------------
     |
-    | Browsershot will create all temporary files in this directors
+    | Browsershot will create all temporary files in this directory
     |
     | Defaults to empty
     |
@@ -80,6 +80,5 @@ return [
     |
     |
     */
-
     'additionalOptions' => [],
 ];
