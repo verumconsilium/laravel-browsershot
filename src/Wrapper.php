@@ -88,7 +88,7 @@ abstract class Wrapper
      *
      * @return Browsershot
      */
-    protected function browsershot(): Browsershot
+    public function browsershot(): Browsershot
     {
         return $this->browsershot;
     }
