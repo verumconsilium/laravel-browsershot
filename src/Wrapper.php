@@ -124,7 +124,7 @@ abstract class Wrapper
      */
     protected function generateTempFile(): self
     {
-        $fileName = 'BrowsershotOutput' . time() . Str::random(5) . '.' . $this->getFileExtension();
+        $fileName = 'BrowsershotOutput'.time().Str::random(5).'.'.$this->getFileExtension();
         $tempFileName = (new TemporaryDirectory($this->tempDir))
             ->create()
             ->path($fileName);
@@ -151,7 +151,7 @@ abstract class Wrapper
 
             return $this;
         } catch (\Error $e) {
-            throw new \BadMethodCallException('Method ' . static::class . '::' . $name . '() does not exists');
+            throw new \BadMethodCallException('Method '.static::class.'::'.$name.'() does not exists');
         }
     }
 
